@@ -101,7 +101,10 @@
     opacity: 1 !important;
   }
   .brand-badge,
-  .brand-logo {
+  .brand-logo,
+  .brand-watermark,
+  .brand-accent,
+  .brand-feats {
     opacity: 0 !important;
   }
   .brand-name {

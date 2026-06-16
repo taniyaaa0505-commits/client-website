@@ -10,6 +10,7 @@ export default {
         display: ['"Cormorant Garamond"', 'Georgia', 'Times New Roman', 'serif'],
         body: ['"DM Sans"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
         mono: ['"DM Mono"', 'ui-monospace', 'Consolas', 'monospace'],
+        times: ['"Times New Roman"', 'Times', 'serif'],
       },
       colors: {
         page: '#edeae4',

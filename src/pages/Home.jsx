@@ -89,11 +89,11 @@ export default function Home() {
       </section>
 
       {/* Who we serve */}
-      <section id="serve" className="section-shell bg-sand-50 py-16 sm:py-24">
+      <section id="serve" className="section-shell bg-sand-50 scroll-mt-24 sm:scroll-mt-28 py-16 sm:py-24">
         <div className="site-container">
           <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
             <p className="section-label mb-2"></p>
-            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-light text-stone-800 mb-4 text-transparent bg-clip-text bg-gradient-to-r from-sage-600 via-stone-800 to-stone-800">Our Categories</h2>
+            <h2 className="font-times font-bold text-4xl sm:text-5xl lg:text-6xl mb-4 text-transparent bg-clip-text bg-gradient-to-r from-sage-600 via-stone-800 to-stone-800">Our Categories</h2>
             <p className="text-sm sm:text-base text-stone-600 font-body leading-relaxed">
               Comprehensive range of quality products from trusted brands.
             </p>
@@ -157,7 +157,7 @@ export default function Home() {
       {/* Contact */}
       <section
         id="connect"
-        className="section-shell relative min-h-0 lg:min-h-[100svh] flex items-center scroll-mt-24 sm:scroll-mt-28 py-14 sm:py-20 bg-mist-50"
+        className="section-shell relative scroll-mt-24 sm:scroll-mt-28 py-12 sm:py-16 bg-mist-50"
       >
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-10 right-4 sm:right-8 h-40 sm:h-56 w-40 sm:w-56 rounded-full bg-mist-200/50 blur-3xl" />

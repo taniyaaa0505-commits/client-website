@@ -31,6 +31,15 @@ export default function BrandCard({ brand, variant = 'compact' }) {
       <div
         className={`brand-card group relative block cursor-default overflow-hidden rounded-2xl sm:rounded-[1.75rem] border border-stone-200/80 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl`}
       >
+        {/* Decorative default state — category-tinted glow + large monogram */}
+        <div
+          className="brand-accent pointer-events-none absolute -right-8 -top-10 h-32 w-32 rounded-full opacity-70 blur-2xl transition-opacity duration-500 group-hover:opacity-0"
+          style={{ background: `radial-gradient(circle, ${brand.accent}55 0%, transparent 70%)` }}
+        />
+        <span className="brand-watermark pointer-events-none absolute -bottom-4 right-1 select-none font-display text-[5.5rem] sm:text-[7rem] font-semibold leading-none text-stone-900/[0.05] transition-opacity duration-500 group-hover:opacity-0">
+          {brand.name.charAt(0)}
+        </span>
+
         {/* Brand photo — revealed on hover (and on touch devices via CSS) */}
         {brand.photo && (
           <img
@@ -62,9 +71,16 @@ export default function BrandCard({ brand, variant = 'compact' }) {
             <h3 className="brand-name font-display text-xl sm:text-2xl font-light leading-tight text-stone-800 transition-colors duration-300 group-hover:text-white">
               {brand.name}
             </h3>
-            <p className="brand-tagline mt-1 text-xs italic font-display leading-snug text-stone-500 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:text-white/90">
+            <p className="brand-tagline mt-1 text-xs italic font-display leading-snug text-stone-500 transition-colors duration-300 group-hover:text-white/90">
               {brand.tagline}
             </p>
+            <div className="brand-feats mt-3 flex flex-wrap gap-1.5 transition-opacity duration-300 group-hover:opacity-0">
+              {brand.features.slice(0, 2).map(f => (
+                <span key={f} className="rounded-full border border-stone-200/80 bg-white/70 px-2 py-0.5 text-[9px] font-body tracking-wide text-stone-500">
+                  {f}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
