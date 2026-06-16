@@ -6,6 +6,7 @@ import { CONTACT } from '../data/contact'
 import BrandCard from '../components/BrandCard'
 import ConnectForm from '../components/ConnectForm'
 import ScrollIndicator from '../components/ScrollIndicator'
+import Reveal from '../components/Reveal'
 import { scrollToSection } from '../utils/scroll'
 
 const serveItems = [
@@ -101,13 +102,15 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
             {serveItems.map((item, index) => (
-              <div key={item.title} className="group rounded-2xl sm:rounded-3xl bg-white/80 border border-white p-7 sm:p-8 text-center shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 animate-fade-in-up" style={{ animationDelay: `${index * 150}ms` }}>
-                <div className="relative mb-6 overflow-hidden">
-                  <img src={item.image} alt={item.title} className="mx-auto h-24 w-24 sm:h-32 sm:w-32 object-cover rounded-2xl transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+              <Reveal key={item.title} delay={index * 130}>
+                <div className="group rounded-2xl sm:rounded-3xl bg-white/80 border border-white p-7 sm:p-8 text-center shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
+                  <div className="relative mb-6 overflow-hidden">
+                    <img src={item.image} alt={item.title} className="mx-auto h-24 w-24 sm:h-32 sm:w-32 object-cover rounded-2xl transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+                  </div>
+                  <h3 className="font-display text-2xl sm:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-sage-600 to-sage-700 mb-3 font-light">{item.title}</h3>
+                  <p className="text-sm text-stone-600 font-body leading-relaxed">{item.desc}</p>
                 </div>
-                <h3 className="font-display text-2xl sm:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-sage-600 to-sage-700 mb-3 font-light">{item.title}</h3>
-                <p className="text-sm text-stone-600 font-body leading-relaxed">{item.desc}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -135,8 +138,10 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 max-w-5xl mx-auto">
-            {brands.map(brand => (
-              <BrandCard key={brand.id} brand={brand} variant="compact" />
+            {brands.map((brand, index) => (
+              <Reveal key={brand.id} delay={(index % 3) * 120} className="h-full">
+                <BrandCard brand={brand} variant="compact" />
+              </Reveal>
             ))}
           </div>
 

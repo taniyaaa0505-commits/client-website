@@ -29,7 +29,7 @@ export default function BrandCard({ brand, variant = 'compact' }) {
   if (variant === 'compact') {
     return (
       <div
-        className={`brand-card group relative block cursor-default overflow-hidden rounded-2xl sm:rounded-[1.75rem] border border-stone-200/80 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl`}
+        className={`brand-card group relative block h-full cursor-default overflow-hidden rounded-2xl sm:rounded-[1.75rem] border border-stone-200/80 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl`}
       >
         {/* Decorative default state — category-tinted glow + large monogram */}
         <div
