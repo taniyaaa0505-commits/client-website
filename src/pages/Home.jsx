@@ -8,16 +8,10 @@ import ConnectForm from '../components/ConnectForm'
 import ScrollIndicator from '../components/ScrollIndicator'
 import { scrollToSection } from '../utils/scroll'
 
-const categoryImages = {
-  Tissue: `${import.meta.env.BASE_URL}images/categories/tissue.svg`,
-  Disposables: `${import.meta.env.BASE_URL}images/categories/disposables.svg`,
-  Housekeeping: `${import.meta.env.BASE_URL}images/categories/housekeeping.WEBP`,
-}
-
 const serveItems = [
   { title: 'Tissue Paper', desc: 'Premium quality tissue paper for households and businesses.', image: `${import.meta.env.BASE_URL}images/serve/hotels.svg` },
   { title: 'Disposable Products', desc: 'Convenient and hygienic disposable solutions for everyday use.', image: `${import.meta.env.BASE_URL}images/serve/offices.svg` },
-  { title: 'Kitchen & Housekeeping', desc: 'Complete range of kitchen items and housekeeping products.', image: `${import.meta.env.BASE_URL}images/serve/retail.svg` },
+  { title: 'Kitchen & Housekeeping', desc: 'Complete range of kitchen items and housekeeping products.', image: `${import.meta.env.BASE_URL}images/categories/housekeeping.WEBP` },
 ]
 
 export default function Home() {
@@ -109,7 +103,7 @@ export default function Home() {
             {serveItems.map((item, index) => (
               <div key={item.title} className="group rounded-2xl sm:rounded-3xl bg-white/80 border border-white p-7 sm:p-8 text-center shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 animate-fade-in-up" style={{ animationDelay: `${index * 150}ms` }}>
                 <div className="relative mb-6 overflow-hidden">
-                  <img src={item.image} alt="" className="mx-auto h-24 w-24 sm:h-32 sm:w-32 transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+                  <img src={item.image} alt={item.title} className="mx-auto h-24 w-24 sm:h-32 sm:w-32 object-cover rounded-2xl transition-transform duration-500 group-hover:scale-110" loading="lazy" />
                 </div>
                 <h3 className="font-display text-2xl sm:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-sage-600 to-sage-700 mb-3 font-light">{item.title}</h3>
                 <p className="text-sm text-stone-600 font-body leading-relaxed">{item.desc}</p>
