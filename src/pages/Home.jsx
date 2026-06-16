@@ -9,8 +9,8 @@ import ScrollIndicator from '../components/ScrollIndicator'
 import { scrollToSection } from '../utils/scroll'
 
 const serveItems = [
-  { title: 'Tissue Paper', desc: 'Premium quality tissue paper for households and businesses.', image: `${import.meta.env.BASE_URL}images/serve/hotels.svg` },
-  { title: 'Disposable Products', desc: 'Convenient and hygienic disposable solutions for everyday use.', image: `${import.meta.env.BASE_URL}images/serve/offices.svg` },
+  { title: 'Tissue Paper', desc: 'Premium quality tissue paper for households and businesses.', image: `${import.meta.env.BASE_URL}images/categories/tissue.JPG` },
+  { title: 'Disposable Products', desc: 'Convenient and hygienic disposable solutions for everyday use.', image: `${import.meta.env.BASE_URL}images/categories/disposable.JPG` },
   { title: 'Kitchen & Housekeeping', desc: 'Complete range of kitchen items and housekeeping products.', image: `${import.meta.env.BASE_URL}images/categories/housekeeping.WEBP` },
 ]
 
@@ -134,7 +134,7 @@ export default function Home() {
             
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 max-w-5xl mx-auto">
             {brands.map(brand => (
               <BrandCard key={brand.id} brand={brand} variant="compact" />
             ))}

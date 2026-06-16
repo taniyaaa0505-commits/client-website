@@ -75,12 +75,12 @@
   }
 
   .brand-card {
-    min-height: 10.5rem;
+    min-height: 12.5rem;
   }
 
   @media (min-width: 640px) {
     .brand-card {
-      min-height: 11rem;
+      min-height: 14rem;
     }
   }
 
@@ -93,14 +93,23 @@
   }
 }
 
-/* On touch devices (no hover), reveal the brand tagline up front
-   instead of leaving the "Hover to explore" hint stranded. */
+/* On touch devices (no hover) the hover reveal is unreachable, so show
+   the brand photo and its caption up front instead. */
 @media (hover: none) {
-  .brand-hint {
+  .brand-photo,
+  .brand-overlay {
+    opacity: 1 !important;
+  }
+  .brand-badge,
+  .brand-logo {
     opacity: 0 !important;
+  }
+  .brand-name {
+    color: #fff !important;
   }
   .brand-tagline {
     opacity: 1 !important;
+    color: rgba(255, 255, 255, 0.9) !important;
   }
 }
 

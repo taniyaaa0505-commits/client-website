@@ -29,41 +29,44 @@ export default function BrandCard({ brand, variant = 'compact' }) {
   if (variant === 'compact') {
     return (
       <div
-        className={`brand-card group relative block cursor-default overflow-hidden rounded-2xl sm:rounded-[1.75rem] border border-stone-200/80 bg-white p-4 sm:p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:ring-4 ${style.hover} ${style.ring}`}
+        className={`brand-card group relative block cursor-default overflow-hidden rounded-2xl sm:rounded-[1.75rem] border border-stone-200/80 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl`}
       >
-        <div
-          className="pointer-events-none absolute -right-6 -top-6 h-28 w-28 rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{ background: `radial-gradient(circle, ${brand.accent}44 0%, transparent 70%)` }}
-        />
+        {/* Brand photo — revealed on hover (and on touch devices via CSS) */}
+        {brand.photo && (
+          <img
+            src={brand.photo}
+            alt={brand.name}
+            loading="lazy"
+            className="brand-photo absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          />
+        )}
+        <div className="brand-overlay absolute inset-0 bg-gradient-to-t from-stone-900/85 via-stone-900/30 to-stone-900/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-        <div className="relative flex items-start justify-between gap-3">
-          <span className={`inline-block rounded-full px-2.5 py-0.5 text-[10px] font-body tracking-wide ${style.badge}`}>
-            {brand.category}
-          </span>
-          <div className="flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl border border-stone-100 bg-white overflow-hidden transition-transform duration-300 group-hover:scale-105 group-hover:shadow-sm">
-            <img
-              src={brand.image}
-              alt={`${brand.name} logo`}
-              className="h-full w-full object-cover"
-              loading="lazy"
-            />
+        {/* Foreground content */}
+        <div className="relative flex h-full flex-col justify-between p-4 sm:p-5">
+          <div className="flex items-start justify-between gap-3">
+            <span className={`brand-badge inline-block rounded-full px-2.5 py-0.5 text-[10px] font-body tracking-wide transition-opacity duration-300 group-hover:opacity-0 ${style.badge}`}>
+              {brand.category}
+            </span>
+            <div className="brand-logo flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl border border-stone-100 bg-white overflow-hidden transition-opacity duration-300 group-hover:opacity-0">
+              <img
+                src={brand.image}
+                alt={`${brand.name} logo`}
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <div>
+            <h3 className="brand-name font-display text-xl sm:text-2xl font-light leading-tight text-stone-800 transition-colors duration-300 group-hover:text-white">
+              {brand.name}
+            </h3>
+            <p className="brand-tagline mt-1 text-xs italic font-display leading-snug text-stone-500 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:text-white/90">
+              {brand.tagline}
+            </p>
           </div>
         </div>
-
-        <h3 className={`relative mt-3 sm:mt-4 font-display text-xl sm:text-2xl font-light leading-tight text-stone-800 transition-colors duration-300 ${style.accent}`}>
-          {brand.name}
-        </h3>
-
-        <div className="relative mt-3 sm:mt-4 min-h-[2.25rem] sm:min-h-[2.5rem]">
-          <p className="brand-hint text-[10px] font-body tracking-wide text-stone-400 transition-opacity duration-300 group-hover:opacity-0">
-            Hover to explore
-          </p>
-          <p className="brand-tagline absolute top-0 left-0 text-xs italic text-stone-500 font-display opacity-0 transition-opacity duration-300 group-hover:opacity-100 leading-snug">
-            {brand.tagline}
-          </p>
-        </div>
-
-        <div className="absolute bottom-4 sm:bottom-5 left-4 sm:left-5 right-4 sm:right-5 h-0.5 rounded-full bg-stone-100 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-transparent group-hover:via-sage-300/60 group-hover:to-transparent" />
       </div>
     )
   }
