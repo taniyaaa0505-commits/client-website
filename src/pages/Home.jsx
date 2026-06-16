@@ -38,7 +38,7 @@ export default function Home() {
   return (
     <div className="pt-20 sm:pt-24 pb-4 sm:pb-5 space-y-4 sm:space-y-5">
       {/* Hero */}
-      <section className="section-shell relative min-h-[80svh] sm:min-h-[88vh] flex items-center bg-sage-100">
+      <section id="hero" className="section-shell relative min-h-[80svh] sm:min-h-[88vh] flex items-center bg-sage-100">
         <video
           autoPlay
           muted

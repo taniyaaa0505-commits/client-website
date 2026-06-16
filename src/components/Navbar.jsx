@@ -31,7 +31,7 @@ export default function Navbar() {
   useEffect(() => {
     if (location.pathname !== '/') return
 
-    const sections = ['serve', 'connect']
+    const sections = ['hero', 'serve', 'connect']
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -93,12 +93,15 @@ export default function Navbar() {
   }
 
   const isActive = (item) => {
-    if (item.section) return location.pathname === '/' && activeSection === item.section
-    return location.pathname === '/'
+    if (location.pathname !== '/') return false
+    // Products -> 'serve', Contact -> 'connect'
+    if (item.section) return activeSection === item.section
+    // Home highlights only on the hero, not while a section is in view
+    return activeSection === 'hero' || activeSection === ''
   }
 
   const isHome = location.pathname === '/'
-  const onHero = isHome && !scrolled && activeSection === ''
+  const onHero = isHome && !scrolled && (activeSection === '' || activeSection === 'hero')
 
   return (
     <>
