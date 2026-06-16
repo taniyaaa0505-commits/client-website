@@ -15,7 +15,8 @@ export function AuthProvider({ children }) {
   }, [])
 
   const login = (email, password) => {
-    if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+    const normalizedEmail = email.trim().toLowerCase()
+    if (normalizedEmail === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
       const userData = { email, role: 'admin', name: 'Admin' }
       setUser(userData)
       localStorage.setItem('velora_user', JSON.stringify(userData))
