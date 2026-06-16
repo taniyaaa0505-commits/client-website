@@ -116,7 +116,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0 min-w-0">
               <img
-                src="/images/logo.svg"
+                src={`${import.meta.env.BASE_URL}images/logo.svg`}
                 alt="Widespread Distribution"
                 className="h-9 w-9 sm:h-10 sm:w-10 rounded-xl sm:rounded-2xl transition-transform duration-300 group-hover:scale-105"
               />

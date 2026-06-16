@@ -33,7 +33,7 @@ export default function Footer() {
 
           <div>
             <div className="flex items-center gap-3 mb-5">
-              <img src="/images/logo.svg" alt="" className="h-10 w-10 rounded-2xl brightness-110" />
+              <img src={`${import.meta.env.BASE_URL}images/logo.svg`} alt="" className="h-10 w-10 rounded-2xl brightness-110" />
               <span className="font-display text-xl font-medium text-white">Widespread Distribution</span>
             </div>
             <p className="text-sm leading-relaxed font-body text-sage-200/80 max-w-xs">

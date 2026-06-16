@@ -9,15 +9,15 @@ import ScrollIndicator from '../components/ScrollIndicator'
 import { scrollToSection } from '../utils/scroll'
 
 const categoryImages = {
-  Tissue: '/images/categories/tissue.svg',
-  Disposables: '/images/categories/disposables.svg',
-  Housekeeping: '/images/categories/housekeeping.svg',
+  Tissue: `${import.meta.env.BASE_URL}images/categories/tissue.svg`,
+  Disposables: `${import.meta.env.BASE_URL}images/categories/disposables.svg`,
+  Housekeeping: `${import.meta.env.BASE_URL}images/categories/housekeeping.svg`,
 }
 
 const serveItems = [
-  { title: 'Tissue Paper', desc: 'Premium quality tissue paper for households and businesses.', image: '/images/serve/hotels.svg' },
-  { title: 'Disposable Products', desc: 'Convenient and hygienic disposable solutions for everyday use.', image: '/images/serve/offices.svg' },
-  { title: 'Kitchen & Housekeeping', desc: 'Complete range of kitchen items and housekeeping products.', image: '/images/serve/retail.svg' },
+  { title: 'Tissue Paper', desc: 'Premium quality tissue paper for households and businesses.', image: `${import.meta.env.BASE_URL}images/serve/hotels.svg` },
+  { title: 'Disposable Products', desc: 'Convenient and hygienic disposable solutions for everyday use.', image: `${import.meta.env.BASE_URL}images/serve/offices.svg` },
+  { title: 'Kitchen & Housekeeping', desc: 'Complete range of kitchen items and housekeeping products.', image: `${import.meta.env.BASE_URL}images/serve/retail.svg` },
 ]
 
 export default function Home() {
@@ -47,7 +47,7 @@ export default function Home() {
           className="absolute inset-0 h-full w-full object-cover"
           aria-hidden="true"
         >
-          <source src="/videos/tissue.mp4" type="video/mp4" />
+          <source src={`${import.meta.env.BASE_URL}videos/tissue.mp4`} type="video/mp4" />
         </video>
 
         <div className="absolute inset-0 bg-white/5" />
