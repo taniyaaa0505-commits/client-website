@@ -40,9 +40,9 @@ export default function LoginModal({ isOpen, onClose }) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
       <div className="absolute inset-0 bg-stone-900/30 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative bg-white w-full max-w-md mx-4 shadow-2xl">
+      <div className="relative bg-white w-full max-w-md max-h-[90dvh] overflow-y-auto rounded-2xl sm:rounded-3xl shadow-2xl">
         {/* Header */}
         <div className="px-8 pt-8 pb-6 border-b border-stone-100">
           <div className="flex items-start justify-between">

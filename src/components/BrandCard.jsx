@@ -55,10 +55,10 @@ export default function BrandCard({ brand, variant = 'compact' }) {
         </h3>
 
         <div className="relative mt-3 sm:mt-4 min-h-[2.25rem] sm:min-h-[2.5rem]">
-          <p className="text-[10px] font-body tracking-wide text-stone-400 transition-opacity duration-300 group-hover:opacity-0">
+          <p className="brand-hint text-[10px] font-body tracking-wide text-stone-400 transition-opacity duration-300 group-hover:opacity-0">
             Hover to explore
           </p>
-          <p className="absolute top-0 left-0 text-xs italic text-stone-500 font-display opacity-0 transition-opacity duration-300 group-hover:opacity-100 leading-snug">
+          <p className="brand-tagline absolute top-0 left-0 text-xs italic text-stone-500 font-display opacity-0 transition-opacity duration-300 group-hover:opacity-100 leading-snug">
             {brand.tagline}
           </p>
         </div>

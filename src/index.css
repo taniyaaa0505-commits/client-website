@@ -83,6 +83,25 @@
       min-height: 11rem;
     }
   }
+
+  .curved-box {
+    @apply rounded-3xl overflow-hidden;
+  }
+
+  .curved-box-sm {
+    @apply rounded-2xl;
+  }
+}
+
+/* On touch devices (no hover), reveal the brand tagline up front
+   instead of leaving the "Hover to explore" hint stranded. */
+@media (hover: none) {
+  .brand-hint {
+    opacity: 0 !important;
+  }
+  .brand-tagline {
+    opacity: 1 !important;
+  }
 }
 
 @layer utilities {

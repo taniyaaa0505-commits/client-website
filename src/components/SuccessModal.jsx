@@ -28,7 +28,7 @@ export default function SuccessModal({ email, onClose }) {
         aria-label="Close"
       />
 
-      <div className="relative w-full max-w-md curved-box bg-white p-8 sm:p-10 text-center shadow-2xl animate-scale-in">
+      <div className="relative w-full max-w-md max-h-[90dvh] overflow-y-auto curved-box bg-white p-8 sm:p-10 text-center shadow-2xl animate-scale-in">
         <button
           type="button"
           onClick={onClose}
