@@ -11,7 +11,7 @@ import { scrollToSection } from '../utils/scroll'
 const categoryImages = {
   Tissue: `${import.meta.env.BASE_URL}images/categories/tissue.svg`,
   Disposables: `${import.meta.env.BASE_URL}images/categories/disposables.svg`,
-  Housekeeping: `${import.meta.env.BASE_URL}images/categories/housekeeping.svg`,
+  Housekeeping: `${import.meta.env.BASE_URL}images/categories/housekeeping.WEBP`,
 }
 
 const serveItems = [
