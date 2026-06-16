@@ -63,7 +63,7 @@ export default function Home() {
               
               </h1>
               <p className="text-stone-700 font-body text-base sm:text-lg max-w-xl mb-3 leading-relaxed">
-                We bring together quality tissue, disposables and housekeeping products — so your business never runs short.
+                We bring togetxher quality tissue, disposables and housekeeping products — so your business never runs short.
               </p>
               <p className="text-stone-600 font-body text-sm sm:text-base max-w-lg mb-8 leading-relaxed">
                 Trusted by thousands of households and businesses.
