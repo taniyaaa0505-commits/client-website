@@ -30,8 +30,7 @@ export default function LoginModal({ isOpen, onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    await new Promise(r => setTimeout(r, 600))
-    const success = login(email, password)
+    const success = await login(email, password)
     setLoading(false)
     if (success) {
       onClose()

@@ -1,12 +1,12 @@
 export const brands = [
   {
-    id: 'passeo',
-    name: 'Passeo',
+    id: 'paseo',
+    name: 'Paseo',
     category: 'Tissue',
-    image: `${import.meta.env.BASE_URL}images/brands/passeo.svg`,
-    photo: `${import.meta.env.BASE_URL}images/brands/passeo1.jpg`,
+    image: `${import.meta.env.BASE_URL}images/brands/paseo.svg`,
+    photo: `${import.meta.env.BASE_URL}images/brands/paseo1.jpg`,
     tagline: 'Softness that speaks for itself',
-    description: 'Premium tissue products crafted for everyday comfort. Passeo combines superior softness with consistent quality, trusted by businesses and households alike.',
+    description: 'Premium tissue products crafted for everyday comfort. Paseo combines superior softness with consistent quality, trusted by businesses and households alike.',
     features: ['Ultra-soft 3-ply', 'Hypoallergenic', 'Bulk supply available', 'Custom packaging'],
     products: [
       { name: 'Facial Tissue Boxes', sku: 'PSO-FT-001', unit: 'Box of 200' },

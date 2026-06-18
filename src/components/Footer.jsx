@@ -96,7 +96,7 @@ export default function Footer() {
 
         <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-center sm:text-left">
           <p className="text-xs text-sage-300/80 font-body">© {year} Widespread Distribution. All rights reserved.</p>
-          <p className="text-xs text-sage-400/70 font-body">Passeo · Origami · Kressa · Premier · Opik · Milton</p>
+          <p className="text-xs text-sage-400/70 font-body">Paseo · Origami · Kressa · Premier · Opik · Milton</p>
         </div>
       </div>
     </footer>

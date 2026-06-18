@@ -100,10 +100,10 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 items-stretch">
             {serveItems.map((item, index) => (
-              <Reveal key={item.title} delay={index * 130}>
-                <div className="group rounded-2xl sm:rounded-3xl bg-white/80 border border-white p-7 sm:p-8 text-center shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
+              <Reveal key={item.title} delay={index * 130} className="h-full">
+                <div className="group flex h-full flex-col rounded-2xl sm:rounded-3xl bg-white/80 border border-white p-7 sm:p-8 text-center shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
                   <div className="relative mb-6 overflow-hidden">
                     <img src={item.image} alt={item.title} className="mx-auto h-24 w-24 sm:h-32 sm:w-32 object-cover rounded-2xl transition-transform duration-500 group-hover:scale-110" loading="lazy" />
                   </div>

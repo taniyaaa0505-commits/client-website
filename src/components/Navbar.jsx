@@ -70,10 +70,19 @@ export default function Navbar() {
   }
 
   const handleNavClick = (item) => (e) => {
-    if (!item.section) return
+    setMenuOpen(false)
+
+    // Home: scroll back to the top when already on the home page,
+    // otherwise let the Link navigate to '/'.
+    if (!item.section) {
+      if (location.pathname === '/') {
+        e.preventDefault()
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+      return
+    }
 
     e.preventDefault()
-    setMenuOpen(false)
 
     if (location.pathname !== '/') {
       navigate('/', { state: { scrollTo: item.section } })
@@ -117,7 +126,16 @@ export default function Navbar() {
         >
           <div className="flex items-center justify-between h-14 sm:h-16 px-4 sm:px-6 lg:px-8">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0 min-w-0">
+            <Link
+              to="/"
+              onClick={(e) => {
+                if (location.pathname === '/') {
+                  e.preventDefault()
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }
+              }}
+              className="flex items-center gap-2.5 sm:gap-3 group shrink-0 min-w-0"
+            >
               <img
                 src={`${import.meta.env.BASE_URL}images/logo.svg`}
                 alt="Widespread Distribution"

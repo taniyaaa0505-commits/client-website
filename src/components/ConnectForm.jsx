@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useInquiries } from '../context/InquiryContext'
+import { isSupabaseConfigured } from '../lib/supabase'
 import SuccessModal from './SuccessModal'
 
 const initialForm = {
@@ -16,6 +17,7 @@ export default function ConnectForm() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [submittedEmail, setSubmittedEmail] = useState('')
+  const [error, setError] = useState('')
   const [form, setForm] = useState({ ...initialForm })
 
   const handleChange = (e) => {
@@ -25,13 +27,22 @@ export default function ConnectForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (!isSupabaseConfigured) {
+      setError('The contact form is being set up. Please email or call us directly for now.')
+      return
+    }
     setLoading(true)
-    await new Promise(r => setTimeout(r, 800))
-    addInquiry(form)
-    setSubmittedEmail(form.email || form.phone)
-    setLoading(false)
-    setSubmitted(true)
-    setForm({ ...initialForm })
+    setError('')
+    try {
+      await addInquiry(form)
+      setSubmittedEmail(form.email || form.phone)
+      setSubmitted(true)
+      setForm({ ...initialForm })
+    } catch (err) {
+      setError('Something went wrong. Please try again or contact us directly.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   const handleCloseModal = () => {
@@ -41,9 +52,10 @@ export default function ConnectForm() {
 
   return (
     <>
+      <div className="rounded-2xl bg-gradient-to-br from-sage-400 via-mist-300 to-sand-300 p-[2px] shadow-xl shadow-sage-900/15">
       <form
         onSubmit={handleSubmit}
-        className="rounded-2xl border border-stone-200/80 bg-white p-6 sm:p-7 space-y-4 shadow-sm"
+        className="rounded-[15px] bg-white p-6 sm:p-7 space-y-4"
       >
         <div>
           <label className="block text-sm text-stone-600 mb-1.5 font-body">Name</label>
@@ -106,6 +118,12 @@ export default function ConnectForm() {
           />
         </div>
 
+        {error && (
+          <div className="rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-600 font-body">
+            {error}
+          </div>
+        )}
+
         <button
           type="submit"
           disabled={loading}
@@ -114,6 +132,7 @@ export default function ConnectForm() {
           {loading ? 'Sending...' : 'Send Message'}
         </button>
       </form>
+      </div>
 
       {submitted && (
         <SuccessModal email={submittedEmail} onClose={handleCloseModal} />
