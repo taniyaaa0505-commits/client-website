@@ -26,11 +26,6 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-        env:
-          # Set these in GitHub → Settings → Secrets and variables → Actions.
-          # If unset, the site still builds; the form/admin stay inactive until added.
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
       # SPA fallback so client-side routes (e.g. /admin) work on refresh
       - run: cp dist/index.html dist/404.html
       - uses: actions/upload-pages-artifact@v3

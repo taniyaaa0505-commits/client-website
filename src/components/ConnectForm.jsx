@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useInquiries } from '../context/InquiryContext'
-import { isSupabaseConfigured } from '../lib/supabase'
 import SuccessModal from './SuccessModal'
 
 const initialForm = {
@@ -17,7 +16,6 @@ export default function ConnectForm() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [submittedEmail, setSubmittedEmail] = useState('')
-  const [error, setError] = useState('')
   const [form, setForm] = useState({ ...initialForm })
 
   const handleChange = (e) => {
@@ -27,22 +25,13 @@ export default function ConnectForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!isSupabaseConfigured) {
-      setError('The contact form is being set up. Please email or call us directly for now.')
-      return
-    }
     setLoading(true)
-    setError('')
-    try {
-      await addInquiry(form)
-      setSubmittedEmail(form.email || form.phone)
-      setSubmitted(true)
-      setForm({ ...initialForm })
-    } catch (err) {
-      setError('Something went wrong. Please try again or contact us directly.')
-    } finally {
-      setLoading(false)
-    }
+    await new Promise(r => setTimeout(r, 800))
+    addInquiry(form)
+    setSubmittedEmail(form.email || form.phone)
+    setLoading(false)
+    setSubmitted(true)
+    setForm({ ...initialForm })
   }
 
   const handleCloseModal = () => {
@@ -117,12 +106,6 @@ export default function ConnectForm() {
             placeholder="What do you need?"
           />
         </div>
-
-        {error && (
-          <div className="rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-600 font-body">
-            {error}
-          </div>
-        )}
 
         <button
           type="submit"
