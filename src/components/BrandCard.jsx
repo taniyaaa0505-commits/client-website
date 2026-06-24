@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { ChevronDown, ChevronUp, ArrowRight } from 'lucide-react'
+import { ChevronDown, ChevronUp, ArrowRight, FileText } from 'lucide-react'
+import Tilt from './Tilt'
 
 const categoryStyles = {
   Tissue: {
@@ -28,8 +29,9 @@ export default function BrandCard({ brand, variant = 'compact' }) {
 
   if (variant === 'compact') {
     return (
+      <Tilt className="h-full" max={8}>
       <div
-        className={`brand-card group relative block h-full cursor-default overflow-hidden rounded-2xl sm:rounded-[1.75rem] border border-stone-200/80 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl`}
+        className={`brand-card group relative block h-full cursor-default overflow-hidden rounded-2xl sm:rounded-[1.75rem] border border-stone-200/80 bg-white transition-shadow duration-500 hover:shadow-xl`}
       >
         {/* Decorative default state — category-tinted glow + large monogram */}
         <div
@@ -84,11 +86,12 @@ export default function BrandCard({ brand, variant = 'compact' }) {
           </div>
         </div>
       </div>
+      </Tilt>
     )
   }
 
   return (
-    <div className={`group rounded-[1.75rem] border border-stone-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${style.hover}`}>
+    <div className={`group rounded-[1.75rem] border border-stone-200 bg-white p-6 transition-all duration-500 ease-smooth hover:-translate-y-1.5 hover:shadow-lg ${style.hover}`}>
       <div className="flex items-start justify-between gap-3 mb-4">
         <div>
           <span className={`inline-block rounded-full px-2.5 py-0.5 text-[10px] font-body tracking-wide mb-2 ${style.badge}`}>
@@ -129,7 +132,7 @@ export default function BrandCard({ brand, variant = 'compact' }) {
         </div>
       )}
 
-      <div className="mt-4 pt-4 border-t border-stone-100">
+      <div className="mt-4 pt-4 border-t border-stone-100 flex items-center justify-between gap-3">
         <a
           href="#connect"
           onClick={(e) => {
@@ -140,6 +143,17 @@ export default function BrandCard({ brand, variant = 'compact' }) {
         >
           Enquire <ArrowRight size={12} />
         </a>
+        {brand.catalogue && (
+          <a
+            href={brand.catalogue}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 rounded-full border border-stone-200 px-3 py-1.5 text-xs font-body text-stone-600 hover:border-sage-400 hover:text-sage-700 transition-colors"
+          >
+            <FileText size={12} />
+            Catalogue
+          </a>
+        )}
       </div>
     </div>
   )

@@ -65,8 +65,18 @@ export default {
       maxWidth: {
         site: '72rem',
       },
+      // Smoother global motion: every `transition-*` utility (hovers, nav pills,
+      // cards, buttons) inherits this ease-out curve unless it sets its own.
+      transitionTimingFunction: {
+        DEFAULT: 'cubic-bezier(0.22, 1, 0.36, 1)',
+        smooth: 'cubic-bezier(0.22, 1, 0.36, 1)',
+        spring: 'cubic-bezier(0.34, 1.3, 0.64, 1)',
+      },
+      transitionDuration: {
+        DEFAULT: '250ms',
+      },
       animation: {
-        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+        'fade-in-up': 'fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards',
       },
       keyframes: {
         fadeInUp: {

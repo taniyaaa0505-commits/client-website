@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { ArrowRight, Mail, Phone, MapPin, ExternalLink, Sparkles } from 'lucide-react'
 import { brands } from '../data/products'
@@ -7,7 +7,10 @@ import BrandCard from '../components/BrandCard'
 import ConnectForm from '../components/ConnectForm'
 import ScrollIndicator from '../components/ScrollIndicator'
 import Reveal from '../components/Reveal'
+import Tilt from '../components/Tilt'
+import CatalogueCinema from '../components/CatalogueCinema'
 import { scrollToSection } from '../utils/scroll'
+import { heroAccents } from '../theatre/cinema'
 
 const serveItems = [
   { title: 'Tissue Paper', desc: 'Premium quality tissue paper for households and businesses.', image: `${import.meta.env.BASE_URL}images/categories/tissue.JPG` },
@@ -17,6 +20,8 @@ const serveItems = [
 
 export default function Home() {
   const location = useLocation()
+  const heroContentRef = useRef(null)
+  const heroGlowRef = useRef(null)
 
   useEffect(() => {
     const hashTarget = window.location.hash?.slice(1)
@@ -27,6 +32,40 @@ export default function Home() {
       return () => clearTimeout(timer)
     }
   }, [location])
+
+  // Cinematic hero: parallax-fade the headline as you scroll past it.
+  useEffect(() => {
+    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+    if (reduce) return
+    let raf = 0
+    const update = () => {
+      const el = heroContentRef.current
+      if (!el) return
+      const y = window.scrollY
+      el.style.transform = `translateY(${y * 0.18}px)`
+      el.style.opacity = String(Math.max(0, 1 - y / 620))
+    }
+    const onScroll = () => {
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(update)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      cancelAnimationFrame(raf)
+    }
+  }, [])
+
+  // Theatre.js drives the decorative hero glow (author keyframes in Studio).
+  useEffect(() => {
+    const unsub = heroAccents.onValuesChange((v) => {
+      const el = heroGlowRef.current
+      if (!el) return
+      el.style.transform = `translate(${v.glowX}px, ${v.glowY}px) rotate(${v.driftRotate}deg)`
+      el.style.opacity = String(v.glowOpacity)
+    })
+    return unsub
+  }, [])
 
   const categories = [...new Set(brands.map(b => b.category))]
 
@@ -49,9 +88,16 @@ export default function Home() {
         <div className="absolute inset-y-0 left-0 w-full max-w-4xl bg-gradient-to-r from-white/50 via-white/15 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white/30 to-transparent" />
 
+        {/* Theatre.js-driven decorative glow (tunable in Studio) */}
+        <div
+          ref={heroGlowRef}
+          aria-hidden="true"
+          className="pointer-events-none absolute right-[12%] top-[22%] h-72 w-72 rounded-full bg-sage-300/40 blur-3xl"
+        />
+
         <div className="relative site-container py-16 sm:py-24 lg:py-28">
           <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
-            <div>
+            <div ref={heroContentRef}>
               <p className="section-label mb-4 sm:mb-6">Widespread Distribution</p>
               <h1 className="font-display font-light text-transparent bg-clip-text bg-gradient-to-r from-sage-600 via-stone-800 to-stone-900 leading-[1.08] mb-5 sm:mb-6 max-w-2xl text-balance text-[clamp(2rem,5.5vw,4.5rem)]">
                 <em className="text-transparent bg-clip-text bg-gradient-to-r from-sage-600 to-sage-700 not-italic">Distribute</em> with purpose.<br />
@@ -103,13 +149,15 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 items-stretch">
             {serveItems.map((item, index) => (
               <Reveal key={item.title} delay={index * 130} className="h-full">
-                <div className="group flex h-full flex-col rounded-2xl sm:rounded-3xl bg-white/80 border border-white p-7 sm:p-8 text-center shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
-                  <div className="relative mb-6 overflow-hidden">
-                    <img src={item.image} alt={item.title} className="mx-auto h-24 w-24 sm:h-32 sm:w-32 object-cover rounded-2xl transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+                <Tilt className="h-full" max={7}>
+                  <div className="group flex h-full flex-col rounded-2xl sm:rounded-3xl bg-white/80 border border-white p-7 sm:p-8 text-center shadow-sm hover:shadow-xl transition-shadow duration-500">
+                    <div className="relative mb-6 overflow-hidden rounded-2xl">
+                      <img src={item.image} alt={item.title} className="mx-auto h-24 w-24 sm:h-32 sm:w-32 object-cover rounded-2xl transition-transform duration-700 ease-smooth group-hover:scale-110" loading="lazy" />
+                    </div>
+                    <h3 className="font-display text-2xl sm:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-sage-600 to-sage-700 mb-3 font-light">{item.title}</h3>
+                    <p className="text-sm text-stone-600 font-body leading-relaxed">{item.desc}</p>
                   </div>
-                  <h3 className="font-display text-2xl sm:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-sage-600 to-sage-700 mb-3 font-light">{item.title}</h3>
-                  <p className="text-sm text-stone-600 font-body leading-relaxed">{item.desc}</p>
-                </div>
+                </Tilt>
               </Reveal>
             ))}
           </div>
@@ -159,6 +207,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Scroll-cinematic catalogue gallery */}
+      <CatalogueCinema />
+
       {/* Contact */}
       <section
         id="connect"
@@ -172,7 +223,7 @@ export default function Home() {
         <div className="relative site-container w-full">
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-start lg:items-center">
             <div>
-              
+
               <h2 className="font-display text-3xl sm:text-4xl font-light text-stone-800 mb-3 sm:mb-4">
                 Get In Touch
               </h2>
