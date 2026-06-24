@@ -55,7 +55,7 @@
   }
 
   .nav-pill-active {
-    @apply bg-white text-sage-700 shadow-sm;
+    @apply bg-sage-600 text-white shadow-sm shadow-sage-900/20;
   }
 
   .btn-primary {

@@ -8,6 +8,7 @@ import { scrollToSection } from '../utils/scroll'
 const navItems = [
   { label: 'Home', section: null, path: '/' },
   { label: 'Products', section: 'serve', path: '/#serve' },
+  { label: 'Catalogue', section: 'catalogues', path: '/#catalogues' },
   { label: 'Contact', section: 'connect', path: '/#connect' },
 ]
 
@@ -31,7 +32,7 @@ export default function Navbar() {
   useEffect(() => {
     if (location.pathname !== '/') return
 
-    const sections = ['hero', 'serve', 'connect']
+    const sections = ['hero', 'serve', 'catalogues', 'connect']
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -215,9 +216,14 @@ export default function Navbar() {
 
             {/* Mobile menu toggle */}
             <button
-              className="md:hidden flex h-10 w-10 items-center justify-center rounded-full bg-stone-100 text-stone-600 hover:bg-stone-200 transition-colors"
+              className={`md:hidden flex h-10 w-10 items-center justify-center rounded-full transition-colors ${
+                menuOpen
+                  ? 'bg-sage-600 text-white'
+                  : 'bg-sage-50 text-sage-700 ring-1 ring-sage-200'
+              }`}
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle menu"
+              aria-expanded={menuOpen}
             >
               {menuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
