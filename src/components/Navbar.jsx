@@ -119,7 +119,7 @@ export default function Navbar() {
         <div
           className={`max-w-6xl mx-auto transition-all duration-500 ${
             onHero
-              ? 'bg-white shadow-lg shadow-sage-900/10 border border-white rounded-2xl sm:rounded-[2rem]'
+              ? 'bg-white shadow-lg shadow-sky-900/10 border border-white rounded-2xl sm:rounded-[2rem]'
               : scrolled
                 ? 'bg-white/95 backdrop-blur-md shadow-md border border-stone-200/80 rounded-2xl sm:rounded-[2rem]'
                 : 'bg-white/92 backdrop-blur-sm border border-stone-200/80 rounded-2xl sm:rounded-[2rem] shadow-sm'
@@ -146,14 +146,14 @@ export default function Navbar() {
                 <span className="font-display text-lg font-medium text-stone-800 tracking-wide block leading-tight">
                   Widespread
                 </span>
-                <span className="text-[10px] tracking-wide text-sage-600 font-body">
+                <span className="text-[10px] tracking-wide text-sky-600 font-body">
                   Distribution
                 </span>
               </div>
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-1 bg-sage-50/80 rounded-full p-1">
+            <nav className="hidden md:flex items-center gap-1 bg-sky-50/80 rounded-full p-1">
               {navItems.map((item) => (
                 <Link
                   key={item.label}
@@ -172,9 +172,9 @@ export default function Navbar() {
                 <div className="relative" ref={userMenuRef}>
                   <button
                     onClick={() => setUserMenuOpen(!userMenuOpen)}
-                    className="flex items-center gap-2 rounded-full border border-stone-200 bg-white pl-1.5 pr-3 py-1.5 text-sm font-body font-medium text-stone-600 hover:border-sage-200 hover:text-sage-700 transition-all"
+                    className="flex items-center gap-2 rounded-full border border-stone-200 bg-white pl-1.5 pr-3 py-1.5 text-sm font-body font-medium text-stone-600 hover:border-sky-200 hover:text-sky-700 transition-all"
                   >
-                    <div className="w-7 h-7 bg-sage-600 rounded-full flex items-center justify-center">
+                    <div className="w-7 h-7 bg-sky-600 rounded-full flex items-center justify-center">
                       <span className="text-white text-xs font-medium">A</span>
                     </div>
                     <span className="text-xs tracking-wide">Admin</span>
@@ -218,8 +218,8 @@ export default function Navbar() {
             <button
               className={`md:hidden flex h-10 w-10 items-center justify-center rounded-full transition-colors ${
                 menuOpen
-                  ? 'bg-sage-600 text-white'
-                  : 'bg-sage-50 text-sage-700 ring-1 ring-sage-200'
+                  ? 'bg-sky-600 text-white'
+                  : 'bg-sky-50 text-sky-700 ring-1 ring-sky-200'
               }`}
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle menu"
@@ -239,8 +239,8 @@ export default function Navbar() {
                   onClick={handleNavClick(item)}
                   className={`block rounded-xl sm:rounded-2xl px-4 py-3 text-sm font-body font-medium transition-colors ${
                     isActive(item)
-                      ? 'bg-sage-600 text-white'
-                      : 'text-stone-600 hover:bg-sage-50 hover:text-sage-700'
+                      ? 'bg-sky-600 text-white'
+                      : 'text-stone-600 hover:bg-sky-50 hover:text-sky-700'
                   }`}
                 >
                   {item.label}

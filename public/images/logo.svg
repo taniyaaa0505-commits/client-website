@@ -1,4 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
-  <rect width="48" height="48" rx="14" fill="#4a735c"/>
-  <path d="M14 32V16h4.5l5.2 9.8L29 16H33.5v16h-3.8V22.5L25.2 32h-2.9l-4.5-9.5V32H14z" fill="#f3f7f4"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Widespread Distribution">
+  <defs>
+    <clipPath id="wd-rounded"><rect width="48" height="48" rx="12"/></clipPath>
+  </defs>
+  <g clip-path="url(#wd-rounded)">
+    <rect width="48" height="48" fill="#333541"/>
+    <path d="M0 0 H21 L0 21 Z" fill="#ad2a4c"/>
+    <text x="21.5" y="37" text-anchor="middle" fill="#fcfcfe"
+          font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="34">W</text>
+    <text x="37.5" y="21" text-anchor="middle" fill="#fcfcfe"
+          font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-weight="700" font-size="17">s</text>
+  </g>
 </svg>

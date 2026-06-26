@@ -217,8 +217,8 @@ export default function AdminDashboard() {
               onClick={() => setFilterStatus(status)}
               className={`rounded-full px-4 py-2 text-sm font-body transition-all ${
                 filterStatus === status
-                  ? 'bg-sage-600 text-white shadow-md'
-                  : 'bg-white text-stone-600 border border-stone-200 hover:border-sage-200'
+                  ? 'bg-sky-600 text-white shadow-md'
+                  : 'bg-white text-stone-600 border border-stone-200 hover:border-sky-200'
               }`}
             >
               {status}

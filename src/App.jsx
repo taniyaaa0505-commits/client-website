@@ -11,6 +11,7 @@ import AdminDashboard from './pages/AdminDashboard'
 function Layout({ children }) {
   return (
     <div className="min-h-screen flex flex-col bg-page">
+      <div className="grain" aria-hidden="true" />
       <Navbar />
       <main className="flex-1">
         {children}

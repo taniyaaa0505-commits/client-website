@@ -56,7 +56,7 @@ export default function CatalogueViewer({ brand, onClose }) {
             <a
               href={brand.catalogue}
               download
-              className="hidden sm:flex items-center gap-2 rounded-full border border-stone-200 px-3.5 py-2 text-xs font-body text-stone-600 hover:border-sage-400 hover:text-sage-700 transition-colors"
+              className="hidden sm:flex items-center gap-2 rounded-full border border-stone-200 px-3.5 py-2 text-xs font-body text-stone-600 hover:border-sky-400 hover:text-sky-700 transition-colors"
             >
               <Download size={14} />
               Download
@@ -76,7 +76,7 @@ export default function CatalogueViewer({ brand, onClose }) {
           <object data={brand.catalogue} type="application/pdf" className="h-full w-full">
             {/* Fallback when the PDF can't be embedded (or isn't added yet) */}
             <div className="flex h-full flex-col items-center justify-center gap-4 px-8 text-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-sage-50 text-sage-600">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-sky-50 text-sky-600">
                 <FileText size={26} />
               </div>
               <p className="font-display text-2xl font-light text-stone-700">

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { User, Phone, MapPin, Mail, MessageSquare, ArrowRight, Sparkles } from 'lucide-react'
 import { useInquiries } from '../context/InquiryContext'
 import { CONTACT, WEB3FORMS_ACCESS_KEY } from '../data/contact'
 import SuccessModal from './SuccessModal'
@@ -14,6 +15,24 @@ const initialForm = {
 
 const emailEnabled =
   WEB3FORMS_ACCESS_KEY && !WEB3FORMS_ACCESS_KEY.includes('YOUR_ACCESS_KEY')
+
+/** Icon-prefixed input that lights up its icon on focus. */
+function Field({ icon: Icon, label, children }) {
+  return (
+    <label className="group block">
+      <span className="mb-1.5 block text-[11px] font-body font-medium uppercase tracking-wider text-stone-500">
+        {label}
+      </span>
+      <div className="relative">
+        <Icon
+          size={16}
+          className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400 transition-colors group-focus-within:text-sky-600"
+        />
+        {children}
+      </div>
+    </label>
+  )
+}
 
 export default function ConnectForm() {
   const { addInquiry } = useInquiries()
@@ -80,98 +99,137 @@ export default function ConnectForm() {
 
   return (
     <>
-      <div className="rounded-2xl bg-gradient-to-br from-sage-400 via-mist-300 to-sand-300 p-[2px] shadow-xl shadow-sage-900/15">
-      <form
-        onSubmit={handleSubmit}
-        className="rounded-[15px] bg-white p-6 sm:p-7 space-y-4"
-      >
-        {/* Honeypot: hidden from users, catches spam bots */}
-        <input
-          type="text"
-          name="botcheck"
-          tabIndex={-1}
-          autoComplete="off"
-          value={botField}
-          onChange={(e) => setBotField(e.target.value)}
-          className="hidden"
-          aria-hidden="true"
-        />
+      <div className="relative">
+        {/* Soft ambient glow behind the form */}
+        <div className="pointer-events-none absolute -inset-3 rounded-[2.25rem] bg-gradient-to-br from-sky-400/40 via-mist-300/40 to-sand-300/40 opacity-70 blur-2xl" />
 
-        <div>
-          <label className="block text-sm text-stone-600 mb-1.5 font-body">Name</label>
-          <input
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            required
-            className="form-input"
-            placeholder="Your name"
-          />
-        </div>
+        {/* Living gradient border */}
+        <div className="animate-gradient relative rounded-[1.75rem] bg-gradient-to-br from-sky-500 via-mist-300 to-sand-300 p-[1.5px] shadow-2xl shadow-sky-700/20">
+          <form
+            onSubmit={handleSubmit}
+            className="rounded-[1.65rem] bg-white/95 p-6 sm:p-8 backdrop-blur-xl"
+          >
+            {/* Heading */}
+            <div className="mb-6 flex items-center gap-2.5">
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-50 text-sky-600 ring-1 ring-sky-100">
+                <Sparkles size={16} />
+              </span>
+              <div>
+                <h3 className="font-display text-xl font-medium leading-tight text-stone-800">
+                  Send us a message
+                </h3>
+                <p className="text-xs text-stone-500 font-body">We'll get back to you within a day.</p>
+              </div>
+            </div>
 
-        <div className="grid sm:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm text-stone-600 mb-1.5 font-body">Phone</label>
+            {/* Honeypot */}
             <input
-              name="phone"
-              value={form.phone}
-              onChange={handleChange}
-              required
-              className="form-input"
-              placeholder="+91 00000 00000"
+              type="text"
+              name="botcheck"
+              tabIndex={-1}
+              autoComplete="off"
+              value={botField}
+              onChange={(e) => setBotField(e.target.value)}
+              className="hidden"
+              aria-hidden="true"
             />
-          </div>
-          <div>
-            <label className="block text-sm text-stone-600 mb-1.5 font-body">City</label>
-            <input
-              name="city"
-              value={form.city}
-              onChange={handleChange}
-              className="form-input"
-              placeholder="Your city"
-            />
-          </div>
+
+            <div className="space-y-4">
+              <Field icon={User} label="Name">
+                <input
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                  className="form-input pl-10"
+                  placeholder="Your name"
+                />
+              </Field>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <Field icon={Phone} label="Phone">
+                  <input
+                    name="phone"
+                    value={form.phone}
+                    onChange={handleChange}
+                    required
+                    className="form-input pl-10"
+                    placeholder="+91 00000 00000"
+                  />
+                </Field>
+                <Field icon={MapPin} label="City">
+                  <input
+                    name="city"
+                    value={form.city}
+                    onChange={handleChange}
+                    className="form-input pl-10"
+                    placeholder="Your city"
+                  />
+                </Field>
+              </div>
+
+              <Field icon={Mail} label="Email">
+                <input
+                  type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  className="form-input pl-10"
+                  placeholder="you@email.com"
+                />
+              </Field>
+
+              <label className="group block">
+                <span className="mb-1.5 block text-[11px] font-body font-medium uppercase tracking-wider text-stone-500">
+                  Message
+                </span>
+                <div className="relative">
+                  <MessageSquare
+                    size={16}
+                    className="pointer-events-none absolute left-3.5 top-4 text-stone-400 transition-colors group-focus-within:text-sky-600"
+                  />
+                  <textarea
+                    name="message"
+                    value={form.message}
+                    onChange={handleChange}
+                    required
+                    rows={4}
+                    className="form-input resize-none pl-10"
+                    placeholder="What do you need?"
+                  />
+                </div>
+              </label>
+            </div>
+
+            {error && (
+              <div className="mt-4 rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-600 font-body">
+                {error}
+              </div>
+            )}
+
+            {/* Premium submit */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="group mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-sky-600 to-sky-700 py-3.5 text-sm font-body font-semibold text-white shadow-lg shadow-sky-700/20 transition-all duration-300 ease-smooth hover:shadow-[0_14px_44px_-8px_rgba(95,143,116,0.85)] active:scale-[0.99] disabled:opacity-60"
+            >
+              {loading ? (
+                <>
+                  <svg className="h-4 w-4 animate-spin text-white" viewBox="0 0 24 24" fill="none">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                  </svg>
+                  Sending…
+                </>
+              ) : (
+                <>
+                  Send Message
+                  <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                </>
+              )}
+            </button>
+          </form>
         </div>
-
-        <div>
-          <label className="block text-sm text-stone-600 mb-1.5 font-body">Email</label>
-          <input
-            type="email"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            className="form-input"
-            placeholder="you@email.com"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm text-stone-600 mb-1.5 font-body">Message</label>
-          <textarea
-            name="message"
-            value={form.message}
-            onChange={handleChange}
-            required
-            rows={4}
-            className="form-input resize-none"
-            placeholder="What do you need?"
-          />
-        </div>
-
-        {error && (
-          <div className="rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-600 font-body">
-            {error}
-          </div>
-        )}
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="btn-primary rounded-xl w-full sm:w-auto min-w-[140px] disabled:opacity-60"
-        >
-          {loading ? 'Sending...' : 'Send Message'}
-        </button>
-      </form>
       </div>
 
       {submitted && (

@@ -4,22 +4,22 @@ import Tilt from './Tilt'
 
 const categoryStyles = {
   Tissue: {
-    badge: 'bg-sage-100 text-sage-700',
-    hover: 'hover:border-sage-200 hover:bg-gradient-to-br hover:from-sage-50 hover:via-white hover:to-sand-50',
-    accent: 'group-hover:text-sage-700',
-    ring: 'group-hover:ring-sage-100',
+    badge: 'bg-sky-100 text-sky-700',
+    hover: 'hover:border-sky-200 hover:bg-gradient-to-br hover:from-sky-50 hover:via-white hover:to-sky-100',
+    accent: 'group-hover:text-sky-700',
+    ring: 'group-hover:ring-sky-100',
   },
   Disposables: {
-    badge: 'bg-sand-100 text-sand-400',
-    hover: 'hover:border-sand-200 hover:bg-gradient-to-br hover:from-sand-50 hover:via-white hover:to-sand-100',
-    accent: 'group-hover:text-sand-400',
-    ring: 'group-hover:ring-sand-100',
+    badge: 'bg-sunny-100 text-sunny-600',
+    hover: 'hover:border-sunny-200 hover:bg-gradient-to-br hover:from-sunny-50 hover:via-white hover:to-sunny-100',
+    accent: 'group-hover:text-sunny-600',
+    ring: 'group-hover:ring-sunny-100',
   },
   Housekeeping: {
-    badge: 'bg-mist-100 text-mist-500',
-    hover: 'hover:border-mist-200 hover:bg-gradient-to-br hover:from-mist-50 hover:via-white hover:to-mist-100',
-    accent: 'group-hover:text-mist-500',
-    ring: 'group-hover:ring-mist-100',
+    badge: 'bg-coral-100 text-coral-500',
+    hover: 'hover:border-coral-200 hover:bg-gradient-to-br hover:from-coral-50 hover:via-white hover:to-coral-100',
+    accent: 'group-hover:text-coral-500',
+    ring: 'group-hover:ring-coral-100',
   },
 }
 
@@ -29,62 +29,69 @@ export default function BrandCard({ brand, variant = 'compact' }) {
 
   if (variant === 'compact') {
     return (
-      <Tilt className="h-full" max={8}>
-      <div
-        className={`brand-card group relative block h-full cursor-default overflow-hidden rounded-2xl sm:rounded-[1.75rem] border border-stone-200/80 bg-white transition-shadow duration-500 hover:shadow-xl`}
-      >
-        {/* Decorative default state — category-tinted glow + large monogram */}
+      <Tilt className="h-full" max={9}>
+      <div className="group relative h-full">
+        {/* Category-tinted ambient glow — intensifies on hover */}
         <div
-          className="brand-accent pointer-events-none absolute -right-8 -top-10 h-32 w-32 rounded-full opacity-70 blur-2xl transition-opacity duration-500 group-hover:opacity-0"
-          style={{ background: `radial-gradient(circle, ${brand.accent}55 0%, transparent 70%)` }}
+          aria-hidden="true"
+          className="pointer-events-none absolute -inset-3 rounded-[2.25rem] opacity-35 blur-2xl transition-all duration-500 group-hover:opacity-80 group-hover:-inset-4"
+          style={{ background: `radial-gradient(closest-side, ${brand.accent}, transparent)` }}
         />
-        <span className="brand-watermark pointer-events-none absolute -bottom-4 right-1 select-none font-display text-[5.5rem] sm:text-[7rem] font-semibold leading-none text-stone-900/[0.05] transition-opacity duration-500 group-hover:opacity-0">
-          {brand.name.charAt(0)}
-        </span>
-
-        {/* Brand photo — revealed on hover (and on touch devices via CSS) */}
-        {brand.photo && (
+      <div
+        className={`brand-card relative z-10 block h-full overflow-hidden rounded-2xl sm:rounded-[1.75rem] ring-1 ring-stone-200/60 shadow-lg shadow-sky-700/10 transition-shadow duration-500 hover:shadow-[0_30px_64px_-24px_rgba(45,64,54,0.45)]`}
+      >
+        {/* Brand photo — always visible, gently zooms on hover */}
+        {brand.photo ? (
           <img
             src={brand.photo}
             alt={brand.name}
             loading="lazy"
-            className="brand-photo absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-smooth group-hover:scale-[1.08]"
           />
+        ) : (
+          <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${brand.accent}, #2b4036)` }} />
         )}
-        <div className="brand-overlay absolute inset-0 bg-gradient-to-t from-stone-900/85 via-stone-900/30 to-stone-900/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        {/* Legibility gradient — deepens on hover */}
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-950/25 to-stone-950/15 transition-opacity duration-500 group-hover:from-stone-950/95" />
 
-        {/* Foreground content */}
-        <div className="relative flex h-full flex-col justify-between p-4 sm:p-5">
-          <div className="flex items-start justify-between gap-3">
-            <span className={`brand-badge inline-block rounded-full px-2.5 py-0.5 text-[10px] font-body tracking-wide transition-opacity duration-300 group-hover:opacity-0 ${style.badge}`}>
-              {brand.category}
-            </span>
-            <div className="brand-logo flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl border border-stone-100 bg-white overflow-hidden transition-opacity duration-300 group-hover:opacity-0">
-              <img
-                src={brand.image}
-                alt={`${brand.name} logo`}
-                className="h-full w-full object-cover"
-                loading="lazy"
-              />
-            </div>
+        {/* Top row: category + logo */}
+        <div className="relative flex items-start justify-between p-4">
+          <span className="rounded-full bg-white/15 px-2.5 py-1 text-[10px] font-body tracking-wide text-white/90 backdrop-blur-md ring-1 ring-white/20">
+            {brand.category}
+          </span>
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/40 bg-white shadow-md transition-transform duration-500 ease-smooth group-hover:scale-105">
+            {brand.image ? (
+              <img src={brand.image} alt={`${brand.name} logo`} className="h-full w-full object-cover" loading="lazy" />
+            ) : (
+              <span className="font-display text-lg font-semibold text-stone-700">{brand.name.charAt(0)}</span>
+            )}
           </div>
+        </div>
 
-          <div>
-            <h3 className="brand-name font-display text-xl sm:text-2xl font-light leading-tight text-stone-800 transition-colors duration-300 group-hover:text-white">
+        {/* Bottom: frosted glass info panel — name/tagline always shown,
+            features slide open on hover */}
+        <div className="absolute inset-x-0 bottom-0 p-3">
+          <div className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md">
+            <h3 className="font-display text-2xl sm:text-3xl font-light leading-none text-white">
               {brand.name}
             </h3>
-            <p className="brand-tagline mt-1 text-xs italic font-display leading-snug text-stone-500 transition-colors duration-300 group-hover:text-white/90">
+            <p className="mt-1.5 text-xs italic font-display leading-snug text-white/80 line-clamp-1">
               {brand.tagline}
             </p>
-            <div className="brand-feats mt-3 flex flex-wrap gap-1.5 transition-opacity duration-300 group-hover:opacity-0">
-              {brand.features.slice(0, 2).map(f => (
-                <span key={f} className="rounded-full border border-stone-200/80 bg-white/70 px-2 py-0.5 text-[9px] font-body tracking-wide text-stone-500">
-                  {f}
-                </span>
-              ))}
+            <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-smooth group-hover:grid-rows-[1fr]">
+              <div className="overflow-hidden">
+                <div className="flex flex-wrap gap-1.5 pt-3">
+                  {brand.features.slice(0, 3).map(f => (
+                    <span key={f} className="rounded-full border border-white/25 bg-white/10 px-2 py-0.5 text-[9px] font-body tracking-wide text-white/85">
+                      {f}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
       </div>
       </Tilt>
     )
@@ -115,7 +122,7 @@ export default function BrandCard({ brand, variant = 'compact' }) {
 
       <button
         onClick={() => setExpanded(!expanded)}
-        className="flex items-center gap-2 text-xs font-body text-stone-500 hover:text-sage-700 transition-colors"
+        className="flex items-center gap-2 text-xs font-body text-stone-500 hover:text-sky-700 transition-colors"
       >
         {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
         {expanded ? 'Hide' : 'View'} Products ({brand.products.length})
@@ -139,7 +146,7 @@ export default function BrandCard({ brand, variant = 'compact' }) {
             e.preventDefault()
             document.getElementById('connect')?.scrollIntoView({ behavior: 'smooth' })
           }}
-          className="flex items-center gap-2 text-xs font-body text-stone-500 hover:text-sage-700 transition-colors"
+          className="flex items-center gap-2 text-xs font-body text-stone-500 hover:text-sky-700 transition-colors"
         >
           Enquire <ArrowRight size={12} />
         </a>
@@ -148,7 +155,7 @@ export default function BrandCard({ brand, variant = 'compact' }) {
             href={brand.catalogue}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 rounded-full border border-stone-200 px-3 py-1.5 text-xs font-body text-stone-600 hover:border-sage-400 hover:text-sage-700 transition-colors"
+            className="flex items-center gap-1.5 rounded-full border border-stone-200 px-3 py-1.5 text-xs font-body text-stone-600 hover:border-sky-400 hover:text-sky-700 transition-colors"
           >
             <FileText size={12} />
             Catalogue

@@ -38,7 +38,7 @@ export default function SuccessModal({ email, onClose }) {
           <X size={16} />
         </button>
 
-        <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-sage-400 to-sage-600 shadow-lg shadow-sage-500/20">
+        <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-sky-600 shadow-lg shadow-sky-500/20">
           <CheckCircle size={32} className="text-white" strokeWidth={2} />
         </div>
 
