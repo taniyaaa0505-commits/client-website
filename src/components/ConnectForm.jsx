@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { User, Phone, MapPin, Mail, MessageSquare, ArrowRight, Sparkles } from 'lucide-react'
 import { useInquiries } from '../context/InquiryContext'
-import { CONTACT, WEB3FORMS_ACCESS_KEY } from '../data/contact'
+import { CONTACT, WEB3FORMS_ACCESS_KEY, EMAILJS } from '../data/contact'
 import SuccessModal from './SuccessModal'
 
 const initialForm = {
@@ -15,6 +15,57 @@ const initialForm = {
 
 const emailEnabled =
   WEB3FORMS_ACCESS_KEY && !WEB3FORMS_ACCESS_KEY.includes('YOUR_ACCESS_KEY')
+
+const confirmationEnabled =
+  EMAILJS.serviceId && !EMAILJS.serviceId.startsWith('YOUR_') &&
+  EMAILJS.templateId && !EMAILJS.templateId.startsWith('YOUR_') &&
+  EMAILJS.publicKey && !EMAILJS.publicKey.startsWith('YOUR_')
+
+/**
+ * Best-effort confirmation email to the customer via EmailJS. Fired after the
+ * owner notification; never blocks or fails the submission if it errors.
+ *
+ * The email's wording lives in your EmailJS *template* (not here). A template
+ * whose "To Email" is {{email}} and body like:
+ *
+ *   Subject: We've received your enquiry — Widespread Distribution
+ *
+ *   Hi {{name}},
+ *   Thank you for reaching out to Widespread Distribution. We've received your
+ *   enquiry and our team will get back to you within one business day.
+ *
+ *   Here's a copy of what you sent us:
+ *     • Type:    {{type}}
+ *     • Phone:   {{phone}}
+ *     • City:    {{city}}
+ *     • Message: {{message}}
+ *
+ *   Warm regards,
+ *   Widespread Distribution · +91 8373909026
+ */
+async function sendConfirmation(form) {
+  try {
+    await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        service_id: EMAILJS.serviceId,
+        template_id: EMAILJS.templateId,
+        user_id: EMAILJS.publicKey,
+        template_params: {
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          city: form.city || '—',
+          type: form.type,
+          message: form.message,
+        },
+      }),
+    })
+  } catch {
+    /* confirmation is non-critical — the owner already got the lead */
+  }
+}
 
 /** Icon-prefixed input that lights up its icon on focus. */
 function Field({ icon: Icon, label, children }) {
@@ -78,6 +129,11 @@ export default function ConnectForm() {
         })
         const data = await res.json()
         if (!data.success) throw new Error(data.message || 'Submission failed')
+      }
+
+      // Send the customer a confirmation copy (best-effort, non-blocking).
+      if (confirmationEnabled && form.email) {
+        await sendConfirmation(form)
       }
 
       setSubmittedEmail(form.email || form.phone)
@@ -174,6 +230,7 @@ export default function ConnectForm() {
                   name="email"
                   value={form.email}
                   onChange={handleChange}
+                  required
                   className="form-input pl-10"
                   placeholder="you@email.com"
                 />
