@@ -86,10 +86,12 @@ export default function Home() {
           muted
           loop
           playsInline
+          preload="auto"
+          poster={`${import.meta.env.BASE_URL}images/hero-poster.jpg`}
           className="absolute inset-0 h-full w-full object-cover"
           aria-hidden="true"
         >
-          <source src={`${import.meta.env.BASE_URL}videos/tissue.mp4`} type="video/mp4" />
+          <source src={`${import.meta.env.BASE_URL}videos/hero.mp4`} type="video/mp4" />
         </video>
 
         <div className="absolute inset-0 bg-white/5" />

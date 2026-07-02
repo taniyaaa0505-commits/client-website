@@ -7,6 +7,7 @@ export const brands = [
     category: 'Tissue',
     image: `${BASE}images/brands/paseo.svg`,
     photo: `${BASE}images/brands/paseo1.jpg`,
+    cover: `${BASE}images/catalogues/paseo.jpg`,
     catalogue: `${BASE}catalogues/paseo.pdf`,
     tagline: 'Softness that speaks for itself',
     description: 'Premium tissue products crafted for everyday comfort. Paseo combines superior softness with consistent quality, trusted by businesses and households alike.',
@@ -26,6 +27,7 @@ export const brands = [
     category: 'Tissue',
     image: `${BASE}images/brands/origami.svg`,
     photo: `${BASE}images/brands/origami1.JPG`,
+    cover: `${BASE}images/catalogues/origami.jpg`,
     catalogue: `${BASE}catalogues/origami.pdf`,
     tagline: 'Precision in every fold',
     description: 'Where form meets function. Origami tissue products are engineered for precision and consistency, ideal for hotels, restaurants, and corporate environments.',
@@ -45,6 +47,7 @@ export const brands = [
     category: 'Tissue',
     image: `${BASE}images/brands/kressa.svg`,
     photo: `${BASE}images/brands/kressa1.JPG`,
+    cover: `${BASE}images/catalogues/kressa.jpg`,
     catalogue: `${BASE}catalogues/kressa.pdf`,
     tagline: 'Reliable quality, every time',
     description: 'Built for volume and reliability. Kressa products offer consistent quality at scale, making them the preferred choice for institutional and commercial buyers.',
@@ -68,6 +71,7 @@ export const brands = [
     category: 'Disposables',
     image: null, // TODO: add public/images/brands/chuk.svg
     photo: `${BASE}images/categories/disposable.JPG`, // TEMP cover
+    cover: `${BASE}images/catalogues/chuk.jpg`,
     catalogue: `${BASE}catalogues/chuk.pdf`,
     tagline: 'Eco-friendly disposable tableware',
     description: 'Sustainable, biodegradable disposable tableware — practical and planet-friendly for food service and events.',
@@ -82,6 +86,7 @@ export const brands = [
     category: 'Disposables',
     image: null, // TODO: add public/images/brands/disposo.svg
     photo: `${BASE}images/categories/disposable.JPG`, // TEMP cover
+    cover: `${BASE}images/catalogues/disposo.jpg`,
     catalogue: `${BASE}catalogues/disposo.pdf`,
     tagline: 'Everyday disposables, done right',
     description: 'A complete range of hygienic disposable products for households, kitchens, and businesses.',
@@ -96,6 +101,7 @@ export const brands = [
     category: 'Tissue',
     image: null, // TODO: add public/images/brands/gipl.svg
     photo: `${BASE}images/categories/tissue.JPG`, // TEMP cover
+    cover: `${BASE}images/catalogues/gipl.jpg`,
     catalogue: `${BASE}catalogues/gipl.pdf`,
     tagline: 'Quality you can rely on',
     description: 'Dependable everyday products supplied at scale for businesses and institutions.',
@@ -110,6 +116,7 @@ export const brands = [
     category: 'Housekeeping',
     image: null, // TODO: add public/images/brands/spotzero.svg
     photo: `${BASE}images/categories/housekeeping.WEBP`, // TEMP cover
+    cover: `${BASE}images/catalogues/spotzero.jpg`,
     catalogue: `${BASE}catalogues/spotzero.pdf`,
     tagline: 'Effortless cleaning, spotless results',
     description: 'Smart housekeeping and cleaning tools designed to make spotless spaces effortless.',

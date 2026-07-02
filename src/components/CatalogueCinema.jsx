@@ -22,10 +22,10 @@ function CatalogueCard({ brand, onOpen, accent }) {
       onClick={() => onOpen(brand)}
       className="group relative flex aspect-[1/1] w-full flex-col overflow-hidden rounded-2xl bg-stone-800 text-left shadow-lg shadow-black/20 ring-1 ring-white/10 transition-shadow duration-500 hover:shadow-xl"
     >
-      {brand.photo ? (
+      {brand.cover || brand.photo ? (
         <img
-          src={brand.photo}
-          alt={brand.name}
+          src={brand.cover || brand.photo}
+          alt={`${brand.name} catalogue cover`}
           loading="lazy"
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-smooth group-hover:scale-105"
         />
