@@ -70,7 +70,7 @@ export const brands = [
     name: 'Chuk',
     category: 'Disposables',
     image: null, // TODO: add public/images/brands/chuk.svg
-    photo: `${BASE}images/categories/disposable.JPG`, // TEMP cover
+    photo: `${BASE}images/catalogues/chuk.jpg`,
     cover: `${BASE}images/catalogues/chuk.jpg`,
     catalogue: `${BASE}catalogues/chuk.pdf`,
     tagline: 'Eco-friendly disposable tableware',
@@ -85,8 +85,8 @@ export const brands = [
     name: 'Disposo',
     category: 'Disposables',
     image: null, // TODO: add public/images/brands/disposo.svg
-    photo: `${BASE}images/categories/disposable.JPG`, // TEMP cover
-    cover: `${BASE}images/catalogues/disposo.jpg`,
+    photo: `${BASE}images/catalogues/disposo.jpg`,
+    cover: `${BASE}images/catalogues/disposo-cover.jpg`,
     catalogue: `${BASE}catalogues/disposo.pdf`,
     tagline: 'Everyday disposables, done right',
     description: 'A complete range of hygienic disposable products for households, kitchens, and businesses.',
