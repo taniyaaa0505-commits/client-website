@@ -7,11 +7,15 @@ export const CONTACT = {
   mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Ground+Floor+37+Village+Samaspur+Sector+51+Gurugram+Haryana',
 }
 
+// Config is read from environment variables (see .env / .env.example). The
+// fallbacks keep the site working when no .env is present (e.g. the CI build),
+// and are safe to keep in source because these are PUBLIC client-side keys —
+// they ship in the browser bundle regardless.
+
 // Web3Forms access key — emails every contact-form submission to you.
-// Get a free key in ~1 min: go to https://web3forms.com, enter the email that
-// should RECEIVE inquiries, and paste the key it sends you below.
-// Until a real key is set, the form still works but only saves locally.
-export const WEB3FORMS_ACCESS_KEY = 'bfb0685e-9a78-423f-ac7b-c8da1c537c33'
+// Get a free key at https://web3forms.com (the email that should RECEIVE leads).
+export const WEB3FORMS_ACCESS_KEY =
+  import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || 'bfb0685e-9a78-423f-ac7b-c8da1c537c33'
 
 // EmailJS — sends an automatic confirmation email to the CUSTOMER after they
 // submit the form (a thank-you + a copy of what they filled in). Free tier.
@@ -29,8 +33,8 @@ export const WEB3FORMS_ACCESS_KEY = 'bfb0685e-9a78-423f-ac7b-c8da1c537c33'
 // Until all three are set, the customer confirmation is skipped (the owner
 // notification via Web3Forms is unaffected).
 export const EMAILJS = {
-  serviceId: 'service_l1s0v1l',
-  templateId: 'template_rpwmjf8',
-  publicKey: 'l97kUTm2qpkpA0Wfq',
+  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_l1s0v1l',
+  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_rpwmjf8',
+  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'l97kUTm2qpkpA0Wfq',
 }
 

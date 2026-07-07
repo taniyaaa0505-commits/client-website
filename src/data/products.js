@@ -27,7 +27,7 @@ export const brands = [
     category: 'Tissue',
     image: `${BASE}images/brands/origami.svg`,
     photo: `${BASE}images/brands/origami1.JPG`,
-    cover: `${BASE}images/catalogues/origami.jpg`,
+    cover: `${BASE}images/catalogues/origami-cover.jpg`,
     catalogue: `${BASE}catalogues/origami.pdf`,
     tagline: 'Precision in every fold',
     description: 'Where form meets function. Origami tissue products are engineered for precision and consistency, ideal for hotels, restaurants, and corporate environments.',
@@ -85,8 +85,8 @@ export const brands = [
     name: 'Disposo',
     category: 'Disposables',
     image: null, // TODO: add public/images/brands/disposo.svg
-    photo: `${BASE}images/catalogues/disposo.jpg`,
-    cover: `${BASE}images/catalogues/disposo-cover.jpg`,
+    photo: `${BASE}images/categories/disposable.JPG`, // TEMP cover
+    cover: `${BASE}images/catalogues/disposo.jpg`,
     catalogue: `${BASE}catalogues/disposo.pdf`,
     tagline: 'Everyday disposables, done right',
     description: 'A complete range of hygienic disposable products for households, kitchens, and businesses.',
